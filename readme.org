@@ -1,6 +1,5 @@
 #+TITLE: Ring - 2017
 #+OPTIONS: toc:nil num:nil
-#+REVEAL_ROOT: https://cdn.jsdelivr.net/reveal.js/3.0.0/
 #+REVEAL_THEME: white
 #+REVEAL_TRANS: linear
 #+REVEAL_PLUGINS: (highlight)
