@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Ring - 2017</title>
+<meta name="author" content="(Guillaume Roguez )"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/white.css" id="theme"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/css/zenburn.css"/>
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'https://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Ring - 2017</h1><h2 class="author">Guillaume Roguez </h2><p class="date">Created: 2017-10-25 mer 11:48</p>
+</section>
+
+<section>
+<section id="slide-org10ee13a">
+<h2 id="org10ee13a">Qui suis-je?</h2>
+<ul>
+<li class="fragment">Guillaume Roguez</li>
+<li class="fragment">Entrée à Savoir-faire Linux en 2012-Q2</li>
+<li class="fragment">Directeur technique de Ring depuis 2014-Q4</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orgd30afa0">
+<h2 id="orgd30afa0">Présentation</h2>
+<p>
+<a href="https://ring.cx/">https://ring.cx/</a>
+</p>
+
+<ul>
+<li class="fragment">Historique</li>
+<li class="fragment">Architecture</li>
+<li class="fragment">Blockchain</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org3d091fd">
+<h2 id="org3d091fd">Ring - rappels</h2>
+<div class="outline-text-2" id="text-org3d091fd">
+</div></section>
+<section id="slide-org27affd3">
+<h3 id="org27affd3">Un projet avec un long historique</h3>
+<ul>
+<li class="fragment">2004 première idée de faire une application VoIP à SFL<br />
+SFLPhone voit le jour.<br />
+Application C++98 et Qt.</li>
+<li class="fragment">2006 passage à GIT</li>
+<li class="fragment">2008 pasage à PJSIP pour la stack SIP</li>
+<li class="fragment">2013 introduction du DHT</li>
+<li class="fragment">2014 SFLPhone devient Ring</li>
+<li class="fragment">2016 arrivée de la technologie «blockchain»</li>
+<li class="fragment">2017 sortie de la 1.0</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org5aa07e6">
+<h2 id="org5aa07e6">Ring - Architecture</h2>
+<div class="outline-text-2" id="text-org5aa07e6">
+</div></section>
+<section id="slide-org9bf5d79">
+<h3 id="org9bf5d79">Orientation «usage»</h3>
+<div class="outline-text-3" id="text-org9bf5d79">
+</div></section>
+<section id="slide-orgc29377a">
+<h4 id="orgc29377a">libring - le coeur de Ring</h4>
+<ul>
+<li class="fragment">Le <b>daemon</b></li>
+<li class="fragment">Bibliothèque avec API C++14</li>
+<li class="fragment">Gestion des communications et des ressources audios/vidéos</li>
+<li class="fragment">Micro-clients: DBus, REST, JS</li>
+
+</ul>
+
+</section>
+<section id="slide-org53a67f5">
+<h4 id="org53a67f5">dring - processus DBus</h4>
+<ul>
+<li class="fragment">Spécifique à la version Linux</li>
+<li class="fragment">Interface avec l'IPC DBus</li>
+<li class="fragment">Utilisation multi-clients</li>
+
+</ul>
+
+</section>
+<section id="slide-org49a527d">
+<h4 id="org49a527d">Clients</h4>
+<ul>
+<li class="fragment">Gnome : processus à part, utilisant DBus pour communiquer avec <i>dring</i></li>
+<li class="fragment">Android, iOS, OSX, Windows (Win32-Qt), Windows (UWP)</li>
+
+</ul>
+
+</section>
+<section id="slide-orgfc6ba9a">
+<h4 id="orgfc6ba9a">libringclient</h4>
+<ul>
+<li class="fragment">Connu sous le nom de <b>LRC</b></li>
+<li class="fragment">Utilisé uniquement sur les versions <i>desktop</i></li>
+<li class="fragment">Bibliothéque C++14, basée sur QtCore</li>
+<li class="fragment">Couche intermédiaire entre les UIs et le daemon</li>
+<li class="fragment">Communique avec DBus (GNOME) ou directement avec libring (OSX, Windows)</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orga016322">
+<h2 id="orga016322">Ring - blockchain</h2>
+<div class="outline-text-2" id="text-orga016322">
+</div></section>
+<section id="slide-orgd58a26b">
+<h3 id="orgd58a26b">Usage?</h3>
+<ul>
+<li>Besoin de simplifier les <b>RingID</b></li>
+
+</ul>
+
+</section>
+<section id="slide-org01e1e02">
+<h4 id="org01e1e02">ec3252b701d82d1e37046a608ee082c033a79d93</h4>
+<ul>
+<li class="fragment">RingID = 160 bits</li>
+<li class="fragment">SHA1 de la clé publique du compte RING<br />
+(souvent représenté en hexadécimal)</li>
+
+</ul>
+
+</section>
+<section id="slide-org404196c">
+<h3 id="org404196c">Usage?</h3>
+<ul>
+<li>Besoin de retrouver simplement des contacts</li>
+
+</ul>
+
+</section>
+<section id="slide-org1bb5498">
+<h3 id="org1bb5498">Pourquoi pas une «blockchain»?</h3>
+<ul>
+<li class="fragment">Blockchain = GIT + DHT + crypto</li>
+<li class="fragment">Ring utilise <span class="underline">ethereum</span> comme implémentation
+<ul>
+<li><i>Smart-contract</i> : possibilité de programmer exactement les propriétés souhaitées.</li>
+
+</ul></li>
+
+</ul>
+
+</section>
+<section id="slide-org847c340">
+<h3 id="org847c340">Utilisation simple</h3>
+<ul>
+<li class="fragment">Conteneur associatif: clé = RingID, valeur = nom «humain»</li>
+<li class="fragment">Serveur central avec un accès REST:<br />
+<a href="https://ns.ring.cx/">https://ns.ring.cx/</a>&lt;command&gt;/&lt;argument&gt;</li>
+<li class="fragment">Minage lors de l'ajout d'une entrèe limité autour de la minute.</li>
+
+</ul>
+
+</section>
+<section id="slide-org81f558e">
+<h3 id="org81f558e">Exemple d'accès par nom</h3>
+<p>
+<a href="https://ns.ring.cx/name/yomgui">https://ns.ring.cx/name/yomgui</a>
+</p>
+
+<div class="org-src-container">
+
+<pre><code class="python" >{"name":"yomgui",
+ "addr":"0xec3252b701d82d1e37046a608ee082c033a79d93"}
+</code></pre>
+</div>
+
+</section>
+<section id="slide-orgecb5d8f">
+<h3 id="orgecb5d8f">Exemple d'accès par adresse</h3>
+<p>
+<a href="https://ns.ring.cx/addr/ec3252b701d82d1e37046a608ee082c033a79d93">https://ns.ring.cx/addr/ec3252b701d82d1e37046a608ee082c033a79d93</a>
+</p>
+
+<div class="org-src-container">
+
+<pre><code class="python" >{"name":"yomgui"}
+</code></pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org6c72e34" data-background="https://media.giphy.com/media/aZKNik5nLC8Mw/giphy-downsized-large.gif" data-background-size="600px" data-background-position="left" data-background-transition="slide">
+<h2 id="org6c72e34">Questions?</h2>
+
+</section>
+</section>
+<section>
+<section id="slide-orgffe3fac">
+<h2 id="orgffe3fac">Merci</h2>
+<p>
+<a href="https://github.com/yomgui1/ring_presentation_2017">https://github.com/yomgui1/ring_presentation_2017</a>
+</p>
+
+<p>
+Source Images: giphy.com<br />
+Edité avec Emacs 25.2.1<br />
+Présentation: Org + reveal.js
+</p>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+<script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+overview: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }]
+});
+</script>
+</body>
+</html>
