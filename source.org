@@ -1,0 +1,134 @@
+#+TITLE: Ring - 2017
+#+OPTIONS: toc:nil num:nil
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/reveal.js/3.0.0/
+#+REVEAL_THEME: white
+#+REVEAL_TRANS: linear
+#+REVEAL_PLUGINS: (highlight)
+
+* Qui suis-je?
+
+#+ATTR_REVEAL: :frag (t)
+  + Guillaume Roguez
+  + Entrée à Savoir-faire Linux en 2012-Q2
+  + Directeur technique de Ring depuis 2014-Q4
+
+* Présentation
+
+https://ring.cx/
+
+#+ATTR_REVEAL: :frag (t)
+   + Historique
+   + Architecture
+   + Blockchain
+
+* Ring - rappels
+
+** Un projet avec un long historique
+
+#+ATTR_REVEAL: :frag (t)
+   + 2004 première idée de faire une application VoIP à SFL\\
+	 SFLPhone voit le jour.\\
+	 Application C++98 et Qt.
+   + 2006 passage à GIT
+   + 2008 pasage à PJSIP pour la stack SIP
+   + 2013 introduction du DHT
+   + 2014 SFLPhone devient Ring
+   + 2016 arrivée de la technologie «blockchain»
+   + 2017 sortie de la 1.0
+
+* Ring - Architecture
+
+** Orientation «usage»
+
+*** libring - le coeur de Ring
+
+#+ATTR_REVEAL: :frag (t)
+    + Le *daemon*
+    + Bibliothèque avec API C++14
+    + Gestion des communications et des ressources audios/vidéos
+    + Micro-clients: DBus, REST, JS
+
+*** dring - processus DBus
+
+#+ATTR_REVEAL: :frag (t)
+	+ Spécifique à la version Linux
+	+ Interface avec l'IPC DBus
+	+ Utilisation multi-clients
+
+*** Clients
+
+#+ATTR_REVEAL: :frag (t)
+	+ Gnome : processus à part, utilisant DBus pour communiquer avec /dring/
+	+ Android, iOS, OSX, Windows (Win32-Qt), Windows (UWP)
+
+*** libringclient
+
+#+ATTR_REVEAL: :frag (t)
+	+ Connu sous le nom de *LRC*
+	+ Utilisé uniquement sur les versions /desktop/
+	+ Bibliothéque C++14, basée sur QtCore
+	+ Couche intermédiaire entre les UIs et le daemon
+	+ Communique avec DBus (GNOME) ou directement avec libring (OSX, Windows)
+
+* Ring - blockchain
+
+** Usage?
+
+   + Besoin de simplifier les *RingID*
+
+*** ec3252b701d82d1e37046a608ee082c033a79d93
+
+#+ATTR_REVEAL: :frag (t)
+   + RingID = 160 bits
+   + SHA1 de la clé publique du compte RING\\
+	 (souvent représenté en hexadécimal)
+
+** Usage?
+
+   + Besoin de retrouver simplement des contacts
+
+** Pourquoi pas une «blockchain»?
+
+#+ATTR_REVEAL: :frag (t)
+   + Blockchain = GIT + DHT + crypto
+   + Ring utilise _ethereum_ comme implémentation
+	 + /Smart-contract/ : possibilité de programmer exactement les propriétés souhaitées.
+
+** Utilisation simple
+
+#+ATTR_REVEAL: :frag (t)
+   + Conteneur associatif: clé = RingID, valeur = nom «humain»
+   + Serveur central avec un accès REST:\\
+     https://ns.ring.cx/<command>/<argument>
+   + Minage lors de l'ajout d'une entrèe limité autour de la minute.
+
+** Exemple d'accès par nom
+
+https://ns.ring.cx/name/yomgui
+
+#+BEGIN_SRC python
+  {"name":"yomgui",
+   "addr":"0xec3252b701d82d1e37046a608ee082c033a79d93"}
+#+END_SRC
+
+** Exemple d'accès par adresse
+
+https://ns.ring.cx/addr/ec3252b701d82d1e37046a608ee082c033a79d93
+
+#+BEGIN_SRC python
+  {"name":"yomgui"}
+#+END_SRC
+
+* Questions?
+:PROPERTIES:
+:reveal_background: https://media.giphy.com/media/aZKNik5nLC8Mw/giphy-downsized-large.gif
+:reveal_background_trans: slide
+:reveal_background_size: 600px
+:reveal_background_position: left
+:END:
+
+* Merci
+
+Source Images: giphy.com\\
+Edité avec Emacs 25.2.1\\
+Présentation: Org + reveal.js
