@@ -129,6 +129,8 @@ https://ns.ring.cx/addr/ec3252b701d82d1e37046a608ee082c033a79d93
 
 * Merci
 
+https://github.com/yomgui1/ring_presentation_2017
+
 Source Images: giphy.com\\
 Edité avec Emacs 25.2.1\\
 Présentation: Org + reveal.js
