@@ -7,7 +7,7 @@
 * Qui suis-je?
 
 #+ATTR_REVEAL: :frag (t)
-  + Guillaume Roguez
+  + guillaume.roguez@savoirfairelinux.com
   + Entrée à Savoir-faire Linux en 2012-Q2
   + Directeur technique de Ring depuis 2014-Q4
 
